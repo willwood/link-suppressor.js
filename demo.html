@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Link Suppressor Test</title>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+<style type="text/css">
+html, body {
+	padding: 0;
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+#main {
+	max-width: 740px;
+	background: #f5f5f5;
+	padding: 30px;
+	margin: 0 auto;
+}
+#nav {
+	display: block;
+	z-index: 150;
+	position: relative;
+	font-size: 105%;
+	height: auto;
+	z-index: 100;
+	width: 100%;
+	height: 40px;
+	background: #cdcdcd;
+}
+#nav ul {
+	display: inline;
+	position: relative;
+	margin: 0;
+	list-style: none;
+	z-index: 100;
+	padding: 0;
+}
+#nav li {
+	float: left;
+	position: relative;
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+#nav a {
+	display: inline;
+	text-decoration: none;
+	z-index: 20;
+	padding: 0;
+	border-bottom: none;
+	-webkit-transition: color .25s linear;
+	transition: color .25s linear;
+}
+#nav a.nolink {
+	cursor: default;
+}
+#nav a:hover {
+	color: #a9a9a9;
+	text-decoration: none;
+}
+/* Top level (parent page links) */
+#nav li {
+	position: relative;
+	z-index: 150;
+	line-height: 40px;
+	margin-bottom: 0;
+	display: block;
+	padding: 0;
+}
+#nav li a.suppressedLink {
+	cursor: default;
+}
+#nav li a {
+	display: block;
+	text-decoration: none;
+	z-index: 20;
+	line-height: 40px;
+	padding: 0px 15px 0;
+	color: #000000;
+}
+/* Second Level */
+#nav ul ul {
+	position: absolute;
+	top: 40px;
+	left: 0;
+	padding: 0;
+	margin: 0;
+	z-index: 149;
+	height: auto;
+	display: none;
+	background: #cdcdcd;
+}
+#nav ul ul li {
+	position: relative;
+	line-height: 2.50em;
+	margin: 0;
+	padding: 0;
+	display: block;
+	width: 190px;
+}
+#nav ul ul li a {
+	float: none;
+	display: block;
+	line-height: 1.25em;
+	padding: 10px 15px;
+	border-top: 1px solid #eaeaea;
+	border-right: 1px solid #eaeaea;
+}
+/* Third level and lower */
+#nav ul ul ul {
+	background: #cdcdcd;
+	top: 0;
+	left: 190px;
+	padding: 0;
+	margin: 0;
+	display: none; 
+}
+#nav ul ul ul li {
+	margin: 0;
+	padding: 0;
+}
+#nav>ul>li:hover>ul,
+#nav>ul>li>ul>li:hover>ul, 
+#nav>ul>li>ul>li>ul>li:hover>ul, 
+#nav>ul>li>ul>li>ul>li>ul>li:hover>ul {
+	display: block;
+}
+/* CSS code to suppress first level parent links */
+#nav ul li.suppressedLink span.linkSuppressor {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 25;
+	cursor: default;
+	background: #ffffff;
+	opacity: 0.01;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0.01)";
+	filter: alpha(opacity=0.01);
+}
+/* CSS code to suppress second level parent links */
+#nav ul ul li.suppressedLink span.linkSuppressor {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 25;
+	cursor: default;
+	background: #ffffff;
+	opacity: 0.01;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0.01)";
+	filter: alpha(opacity=0.01);
+}
+/* CSS code to un-suppress third level parent links and below */
+#nav ul ul ul li.suppressedLink span.linkSuppressor {
+	display: none;
+}
+</style>
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="main">
+<h1>Link Suppressor Test</h1>
+<h3 style="padding-bottom: 30px;">Parent page links in this example are suppressed and resist clicking</h3>
+<nav id="nav">
+<ul class="toolbarList">
+	<li class="currentListItem"><a href="http://example.com" class="current">Homepage</a></li>
+	<li class="normalListItem"><a href="http://example.com" class="normal">About</a></li>
+	<li class="normalListItem"><a href="http://example.com" class="normal">Services</a>
+		<ul class="toolbarList">
+		<li class="normalListItem"><a href="http://example.com" class="normal">Consultancy</a></li>
+		<li class="normalListItem"><a href="http://example.com" class="normal">Development</a></li>
+		<li class="normalListItem"><a href="http://example.com" class="normal">Planning</a>
+			<ul class="toolbarList">
+			<li class="normalListItem"><a href="http://example.com" class="normal">Outlines</a></li>
+			<li class="normalListItem"><a href="http://example.com" class="normal">Task Lists</a></li>
+			<li class="normalListItem"><a href="http://example.com" class="normal">Charting</a></li>
+			<li class="normalListItem"><a href="http://example.com" class="normal">Schemes</a></li>
+			</ul>
+		</li>
+		<li class="normalListItem"><a href="http://example.com" class="normal">Testing</a></li>
+		<li class="normalListItem"><a href="http://example.com" class="normal">Support</a></li>
+		</ul>
+	</li>
+	<li class="normalListItem"><a href="http://example.com" class="normal">Events</a>
+		<ul class="toolbarList">
+		<li class="normalListItem"><a href="http://example.com" class="normal">Spring Gala</a></li>
+		<li class="normalListItem"><a href="http://example.com" class="normal">Open Days</a></li>
+		</ul>
+	</li>
+	<li class="normalListItem"><a href="http://example.com" class="normal">Reviews</a></li>
+	<li class="normalListItem"><a href="http://example.com" class="normal">Contact Us</a></li>
+</ul>
+</nav>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et erat ut lectus fermentum tincidunt. Donec sed leo risus. Sed ut eros mi, a pellentesque purus. Donec leo elit, facilisis euismod accumsan in, mollis vel massa. Donec at turpis massa, nec tincidunt erat. In venenatis dolor sem. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam euismod egestas facilisis. Aenean vestibulum sapien nec libero imperdiet semper. In risus nulla, eleifend at pharetra sodales, consectetur non justo. Phasellus faucibus, leo eget blandit semper, augue felis ullamcorper lectus, vel luctus urna quam quis nunc. Nullam vel nibh sit amet felis tincidunt convallis eu nec purus. Sed tempor velit ut nulla pretium sodales. Quisque dapibus massa non velit elementum quis aliquam nibh pharetra. In arcu mauris, bibendum eget laoreet at, congue vitae tortor.</p>
+
+<p>Aenean sed lacus vitae ante sagittis pellentesque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam mattis velit sed odio sollicitudin dapibus. Aenean pellentesque lectus quis quam hendrerit vel rhoncus augue facilisis. Aenean tempus malesuada augue vitae commodo. Etiam sed lorem dolor, et congue mauris. Nullam sit amet erat nisl, ac imperdiet dolor. Donec vel ligula odio. Maecenas pretium leo sit amet libero vulputate molestie in at arcu. Suspendisse potenti. Maecenas pellentesque, dolor id scelerisque vehicula, magna dolor luctus lectus, ut ornare lectus ipsum ut ligula. Aenean ante libero, consectetur vel ultricies quis, feugiat sed lorem. Aenean sollicitudin erat quis massa imperdiet et malesuada dui malesuada. Ut id augue nisi, nec placerat ligula. Sed imperdiet neque eget nibh hendrerit accumsan. In eget dolor sem, quis volutpat urna. Proin tempor nunc vitae felis iaculis bibendum.</p>
+
+<p>Sed lacinia, velit vitae gravida egestas, mauris ipsum varius justo, vitae tincidunt felis erat vitae odio. Aenean lorem orci, rhoncus a tincidunt sed, aliquet vitae odio. Nullam ac quam sit amet lacus posuere molestie in quis sapien. Etiam sed erat massa. Maecenas quis elit a mi pellentesque fringilla. Phasellus id velit arcu. Suspendisse pretium rutrum pulvinar. Donec enim turpis, iaculis nec imperdiet at, suscipit eu mauris. Duis luctus venenatis dolor, sed feugiat eros varius mollis. Nunc tincidunt pharetra lorem non convallis. Nulla consequat luctus enim quis varius.</p>
+
+<p>Aliquam id imperdiet tellus. Nam id turpis mauris. Sed vel odio felis. Quisque blandit, est quis vulputate commodo, dolor dui molestie justo, ac posuere diam sem quis tellus. Suspendisse in luctus nibh. Donec porttitor ante nec nunc volutpat vehicula. Nunc nec malesuada enim. Nunc tristique, massa eget vehicula sodales, magna velit tincidunt tellus, interdum vulputate magna tortor sed leo. Praesent dignissim mi sit amet dolor pulvinar quis pellentesque urna cursus. Nam ultricies felis varius arcu pulvinar quis ultricies erat aliquet. Duis non lectus eu massa pharetra pharetra consectetur vitae massa. Nulla facilisi. Cras sed nunc nunc, ac euismod odio. Integer convallis, nisl id ullamcorper volutpat, ligula risus suscipit orci, non gravida magna urna eu urna.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vehicula nulla id nisi laoreet id mattis ante bibendum. Aliquam eget dui id urna bibendum dapibus. Suspendisse potenti. Pellentesque tempor tristique dui. Maecenas arcu tellus, varius at dictum at, adipiscing sed ante. Donec nec sapien justo, volutpat eleifend purus. Aenean quis leo id erat feugiat lobortis. Fusce sed nisi tellus, laoreet ultricies felis. Nam eget lorem erat. Etiam in sapien leo, et ultricies nibh. Suspendisse potenti. Nulla quam lectus, dignissim nec blandit at, hendrerit euismod dui. Integer tincidunt, purus sit amet dictum ullamcorper, augue massa porttitor lorem, non commodo tortor nunc in massa. Nam sodales, risus in scelerisque lobortis, est leo ultricies lorem, et malesuada mauris orci at quam. Quisque et lacinia libero.</p>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#nav li:has(ul)").addClass('suppressedLink').prepend("<span class='linkSuppressor' onClick='return true'></span>");
+});
+</script>
+</body>
+</html>
